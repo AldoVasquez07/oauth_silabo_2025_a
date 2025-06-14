@@ -80,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cs_lib_oauth.wsgi.application'
+WSGI_APPLICATION = 'cs_lib_oauth.wsgi.app'
 
 
 
