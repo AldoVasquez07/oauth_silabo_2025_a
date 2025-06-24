@@ -15,6 +15,8 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
+AUTH_USER_MODEL = 'silabo.CustomUser'
+
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=12),   # Token de acceso válido por 12 horas
@@ -34,8 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tokens',
+    'silabo',
     'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +66,11 @@ ROOT_URLCONF = 'cs_lib_oauth.urls'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-AUTHENTICATION_BACKENDS = ['tokens.backends.EmailBackend']
+AUTHENTICATION_BACKENDS = [
+    'silabo.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 
 TEMPLATES = [
